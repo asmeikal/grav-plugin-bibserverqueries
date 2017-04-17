@@ -1,0 +1,33 @@
+name: Bibserver Interface
+version: 0.1.0
+description: Make queries to the MCLab Bibserver.
+author:
+  name: Michele Laurenti
+  email: laurenti.1603064@studenti.uniroma1.it
+keywords: grav, plugin, bibtex, bibserver
+homepage: https://github.com/asmeikal/grav-plugin-bibserverqueries
+bugs: https://github.com/asmeikal/grav-plugin-bibserverqueries/issues
+docs: https://github.com/asmeikal/grav-plugin-bibserverqueries/blob/develop/README.md
+license: MIT
+
+form:
+  validation: strict
+  fields:
+    enabled:
+      type: toggle
+      label: Plugin status
+      highlight: 1
+      default: 0
+      options:
+        1: Enabled
+        0: Disabled
+      validate:
+        type: bool
+    token:
+      type: text
+      label: Auth token
+      help: Token to make queries to the bibserver application.
+    url:
+      type: text
+      label: Bibserver URL
+      help: URL where queries are made.
