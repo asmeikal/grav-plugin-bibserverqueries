@@ -1,5 +1,5 @@
 name: Bibserver Interface
-version: 0.1.0
+version: 0.1.1
 description: Make queries to the MCLab Bibserver.
 author:
   name: Michele Laurenti

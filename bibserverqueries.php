@@ -47,8 +47,8 @@ class BibserverQueriesPlugin extends Plugin
                          'query';
             $query = $header['bibserver']['query'];
             // get token
-            $url = $this->grav['config']->get('plugins.bib-queries.url') . '/' . $query_url;
-            $token = $this->grav['config']->get('plugins.bib-queries.token');
+            $url = $this->grav['config']->get('plugins.bibserverqueries.url') . '/' . $query_url;
+            $token = $this->grav['config']->get('plugins.bibserverqueries.token');
             // make query
             $ch = curl_init($url);
             $json_data = json_encode($query);
@@ -70,6 +70,6 @@ class BibserverQueriesPlugin extends Plugin
     public function onTwigExtensions()
     {
         require_once(__DIR__ . '/twig/BibtexTwigExtension.php');
-        $this->grav['twig']->twig->addExtension(new BibtexTwigExtension());
+        $this->grav['twig']->twig->addExtension(new \BibtexTwigExtension());
     }
 }
