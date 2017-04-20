@@ -1,6 +1,7 @@
 name: Bibserver Interface
 version: 0.1.1
 description: Make queries to the MCLab Bibserver.
+icon: book
 author:
   name: Michele Laurenti
   email: laurenti.1603064@studenti.uniroma1.it
@@ -27,7 +28,11 @@ form:
       type: text
       label: Auth token
       help: Token to make queries to the bibserver application.
+      validate:
+        required: false
     url:
       type: text
       label: Bibserver URL
       help: URL where queries are made.
+      validate:
+        required: true
