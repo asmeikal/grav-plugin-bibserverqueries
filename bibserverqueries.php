@@ -29,42 +29,17 @@ class BibserverQueriesPlugin extends Plugin
 
         // Enable the main event we are interested in
         $this->enable([
-            'onPageProcessed' => ['onPageProcessed', 0],
-            'onTwigExtensions' => ['onTwigExtensions', -100],
+            'onTwigExtensions' => ['onTwigExtensions', 0],
+            'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0],
         ]);
     }
 
-    public function onPageProcessed(Event $e)
+    /**
+     * Add current directory to twig lookup paths.
+     */
+    public function onTwigTemplatePaths()
     {
-        // get page and header
-        $page = $e['page'];
-        $header = (array) $page->header();
-        // check if we have to make a query
-        if (isset($header['bibserver'])) {
-            // get query
-            $query_url = isset($header['bibserver']['query_url']) ?
-                         $header['bibserver']['query_url'] :
-                         'query';
-            $query = $header['bibserver']['query'];
-            // get token
-            $url = $this->grav['config']->get('plugins.bibserverqueries.url') . '/' . $query_url;
-            $token = $this->grav['config']->get('plugins.bibserverqueries.token');
-            // make query
-            $ch = curl_init($url);
-            $json_data = json_encode($query);
-            // set POST options
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-            // exec POST
-            $result = curl_exec($ch); 
-            $result = json_decode($result, true);
-            // inject result
-            $header = new \Grav\Common\Page\Header($header);
-            $header->set('bibserver_result', $result);
-            $page->header($header->items);
-        }
+        $this->grav['twig']->twig_paths[] = __DIR__ . '/templates';
     }
 
     public function onTwigExtensions()

@@ -40,36 +40,7 @@ url: [Bibserver base url]
 
 ## Usage
 
-To query the Bibserver, insert the following inside the frontmatter of a page:
-
-```yaml
-bibserver:
-    query_url: [query url]
-    query:
-        [query]
-```
-
-- `query_url` is optional (defaults to `query`), and identifies the URL to which the query will be directed.
-- `query` field is required and specifies the query to use, _e.g._, to query for a list of keys one can specify:
-
-  ```yaml
-  bibserver:
-    query_url: 'key-list'
-    query:
-        - [key 1]
-        - [key 2]
-        ...
-  ```
-
-  To issue a MongoDB query:
-
-  ```yaml
-  bibserver:
-    query_url: 'query'
-    query:
-        author:
-            $regex: [Author Name]
-  ```
-
-> NOTE: This plugin currently only works inside non-modular pages.
+To query the Bibserver, use the Twig function `bibserver_query(query, url='query')`.
+The `query` parameter specifies the query to be sent to the Bibserver, _e.g_, a list of keys if `url` is `key-list`, or a standard MongoDB query (as an associative array) if `url` is the default `query`.
+The `url` parameter specifies to which `url` the query will be sent.
 

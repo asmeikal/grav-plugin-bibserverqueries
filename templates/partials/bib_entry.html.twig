@@ -1,0 +1,16 @@
+
+{% spaceless %}
+{{ entry.author|bibserver_print_authors }}
+<br>
+<b>{{ entry.title }}</b>
+{% if entry.ENTRYTYPE == 'article' %}
+	<br>
+	<i>{{ entry.journal }} {{ entry.volume }} ({{ entry.year }}): {{ entry.pages }}.</i>
+	{% if entry.issn %}
+		ISSN: {{ entry.issn }}.
+	{% endif %}
+{% elseif entry.ENTRYTYPE == 'inproceedings' %}
+	<br>
+	<i>In {{ entry.booktitle }}.</i>
+{% endif %}
+{% endspaceless %}
