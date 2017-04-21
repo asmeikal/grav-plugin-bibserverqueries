@@ -1,4 +1,13 @@
-# v.0.1.1
+# v0.2.0
+## 04/21/2017
+
+1. [](#new)
+	* Add template for bib entries
+	* Add filter to group bib entries by year
+2. [](#improved)
+	* Queries can now be made with a Twig function
+
+# v0.1.1
 ## 04/17/2017
 
 1. [](#bugfix)
