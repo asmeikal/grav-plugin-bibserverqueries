@@ -1,3 +1,9 @@
+# v0.2.1
+## 04/22/2017
+
+1. [](#bugfix)
+	* Fix conflict with other Twig filters/functions
+
 # v0.2.0
 ## 04/21/2017
 

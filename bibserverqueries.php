@@ -3,6 +3,7 @@ namespace Grav\Plugin;
 
 use Grav\Common\Plugin;
 use RocketTheme\Toolbox\Event\Event;
+use Grav\Plugin\BibserverQueries\BibtexTwigExtension;
 
 /**
  * Class BibserverQueriesPlugin
@@ -45,6 +46,6 @@ class BibserverQueriesPlugin extends Plugin
     public function onTwigExtensions()
     {
         require_once(__DIR__ . '/twig/BibtexTwigExtension.php');
-        $this->grav['twig']->twig->addExtension(new \BibtexTwigExtension());
+        $this->grav['twig']->twig->addExtension(new BibtexTwigExtension());
     }
 }
