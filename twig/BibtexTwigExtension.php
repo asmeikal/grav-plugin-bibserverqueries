@@ -1,6 +1,7 @@
 <?php
+namespace Grav\Plugin\BibserverQueries;
 
-use Grav\Common\Twig\TwigExtension;
+use Grav\Common\Grav;
 
 function invert_names($e) {
     $names = explode(", ", $e);
@@ -9,21 +10,27 @@ function invert_names($e) {
     return $first_name . " " . $last_name;
 }
 
-class BibtexTwigExtension extends TwigExtension
+class BibtexTwigExtension extends \Twig_Extension
 {
+    protected $grav;
+
+    public function __construct()
+    {
+        $this->grav = Grav::instance();
+    }
 
     public function getFilters()
     {
         return array(
-            new Twig_SimpleFilter('bibserver_print_authors', array($this, 'bibserver_print_authors_filter')),
-            new Twig_SimpleFilter('bibserver_group_year', array($this, 'bibserver_group_year_filter')),
+            new \Twig_SimpleFilter('bibserver_print_authors', array($this, 'bibserver_print_authors_filter')),
+            new \Twig_SimpleFilter('bibserver_group_year', array($this, 'bibserver_group_year_filter')),
         );
     }
 
     public function getFunctions()
     {
         return array(
-            new Twig_SimpleFunction('bibserver_query', array($this, 'bibserver_query_function')),
+            new \Twig_SimpleFunction('bibserver_query', array($this, 'bibserver_query_function')),
         );
     }
 
