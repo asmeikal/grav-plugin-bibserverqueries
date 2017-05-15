@@ -24,6 +24,7 @@ class BibtexTwigExtension extends \Twig_Extension
         return array(
             new \Twig_SimpleFilter('bibserver_print_authors', array($this, 'bibserver_print_authors_filter')),
             new \Twig_SimpleFilter('bibserver_group_year', array($this, 'bibserver_group_year_filter')),
+            new \Twig_SimpleFilter('print_bibentry', array($this, 'print_bibentry_filter')),
         );
     }
 
@@ -76,5 +77,10 @@ class BibtexTwigExtension extends \Twig_Extension
             $result[$year][] = $entry;
         }
         return $result;
+    }
+
+    public function print_bibentry_filter($e) {
+        require_once(__DIR__ . '/bibtex2html.php');
+        return bibtex2html($e, $e['ENTRYTYPE'], array());
     }
 }
